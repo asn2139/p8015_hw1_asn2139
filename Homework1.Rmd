@@ -1,7 +1,69 @@
 ---
-title: "p8105_hw1_asn2139"
-author:"Akanksha Nalatwad"
-date: 2019-09-16
+title: "Data Science HW1"
+author: "Akanksha Nalatwad"
 output: github_document
 ---
+
+```{r}
+library(tidyverse)
+```
+
+## Problem 1
+
+Create a data frame comprised of:
+
+* a random sample of size 10 from a standard Normal distribution
+* a logical vector indicating whether elements of the sample are greater than 0
+* a character vector of length 10
+* a factor vector of length 10, with 3 different factor “levels”
+
+```{r create_df}
+prob1_df = 
+  tibble(
+    samp = rnorm(10),
+    samp_gt_0 = samp > 0,
+    char_vec = c("a", "b", "c", "d", "e", "f", "g", "h", "i", "j"),
+    factor_vec = factor(c("low", "low", "low", "med", "med", "med", "med", "high", "high", "high"))
+  )
+```
+Take the mean of each variable in my data frame.
+
+```{r mean_pull_var}
+mean(pull(prob1_df, samp))
+mean(pull(prob1_df, samp_gt_0))
+mean(pull(prob1_df, char_vec))
+mean(pull(prob1_df, factor_vec))
+```
+
+```{r try_numeric}
+as.numeric(pull(prob1_df, samp))
+as.numeric(pull(prob1_df, samp_gt_0))
+as.numeric(pull(prob1_df, char_vec))
+as.numeric(pull(prob1_df, factor_vec))
+```
+
+```{r}
+as.numeric(pull(prob1_df, samp_gt_0)) * pull(prob1_df, samp)
+```
+
+## Problem 2
+
+```{r}
+data("penguins", package = "palmerpenguins")
+
+
+```
+There are `r nrow(penguins)` rows and `r ncol(penguins)` columns in this dataset. 
+The species in this dataset include `r unique (pull(penguins, species))` and the islands include `r unique (pull(penguins, island))`.
+The variable names in the dataset 'penguins' are: `r names(penguins)`.
+The mean flipper length in this data set is `r mean (pull(penguins, flipper_length_mm), na.rm=TRUE)`.
+
+Scatterplot of Flipper length and Bill Length
+
+```{r}
+ggplot(data=penguins, aes(x=bill_length_mm, y=flipper_length_mm, color=species))+geom_point()
+
++labs(title="Title")
+  ```
+
 
