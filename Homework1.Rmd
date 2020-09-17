@@ -62,8 +62,6 @@ Scatterplot of Flipper length and Bill Length
 
 ```{r}
 ggplot(data=penguins, aes(x=bill_length_mm, y=flipper_length_mm, color=species))+geom_point()
-
-+labs(title="Title")
   ```
 
 
