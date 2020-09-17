@@ -61,7 +61,15 @@ The mean flipper length in this data set is `r mean (pull(penguins, flipper_leng
 Scatterplot of Flipper length and Bill Length
 
 ```{r}
-ggplot(data=penguins, aes(x=bill_length_mm, y=flipper_length_mm, color=species))+geom_point()
-  ```
+plot_df= tibble(
+  x=penguins$bill_length_mm,
+  y=penguins$flipper_length_mm
+)
+
+ggplot(data = penguins, aes(x = bill_length_mm, y = flipper_length_mm, color = species)) + geom_point()
+```
+
+
+
 
 
